@@ -17,7 +17,6 @@ const debounce = (callback, delay = 300) => {
 const saveToLocalStorage = debounce((event) => {
     const { name, value } = event.target;
 
-    console.log(event.target.name)
     if(name === 'email' || name === 'message') {
         feedbackFormValues[name] = value.trim();
         localStorage.setItem(localStorageKey, JSON.stringify(feedbackFormValues));
@@ -44,8 +43,10 @@ const clearToLocalStorage = (event) => {
     form.reset();
 };
 
-feedbackForm.addEventListener('input', saveToLocalStorage);
-feedbackForm.addEventListener('submit', clearToLocalStorage);
+if (feedbackForm) {
+    feedbackForm.addEventListener('input', saveToLocalStorage);
+    feedbackForm.addEventListener('submit', clearToLocalStorage);
+}
 
 let savedData = localStorage.getItem(localStorageKey);
 
