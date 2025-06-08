@@ -10,4 +10,4 @@ import"./assets/modulepreload-polyfill-B5Qt9EMX.js";import{S as i}from"./assets/
           />
         </a>
       </li>`,s=p=>{const a=p.map(c).join("");o.insertAdjacentHTML("beforeend",a)},r=()=>new i(".gallery a",{captionsData:"alt",captionDelay:250}),l=()=>{n(o),s(e),r()};l();
-//# sourceMappingURL=01-gallery.js.map
+//# sourceMappingURL=1-gallery.js.map
