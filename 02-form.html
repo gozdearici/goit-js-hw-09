@@ -4,21 +4,26 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/goit-js-hw-09/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GALLERY</title>
+    <title>FORM</title>
     <script type="module" crossorigin src="/goit-js-hw-09/assets/modulepreload-polyfill-B5Qt9EMX.js"></script>
     <script type="module" crossorigin src="/goit-js-hw-09/assets/02-form-BB1ery1K.js"></script>
     <link rel="stylesheet" crossorigin href="/goit-js-hw-09/assets/02-form-CFrPtiMb.css">
   </head>
   <body>
     <main>
-      <!-- Loads the specified .html file -->
-      <ul class="index">
-        <li><a href="./01-gallery.html">GALLERY</a></li>
-        <li><a href="./02-form.html">FORM</a></li>
-      </ul>
+        <form class="feedback-form" autocomplete="off">
+            <label>
+              Email
+              <input type="email" name="email" autofocus />
+            </label>
+            <label>
+              Message
+              <textarea name="message" rows="8"></textarea>
+            </label>
+            <button type="submit">Submit</button>
+          </form>
+          
     </main>
-    
-
     
   </body>
 </html>
