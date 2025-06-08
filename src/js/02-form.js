@@ -46,7 +46,10 @@ const clearToLocalStorage = (event) => {
 if (feedbackForm) {
     feedbackForm.addEventListener('input', saveToLocalStorage);
     feedbackForm.addEventListener('submit', clearToLocalStorage);
-}
+} else {
+    alert('Elementler yüklenmedi');
+    return;
+};
 
 let savedData = localStorage.getItem(localStorageKey);
 
@@ -60,4 +63,4 @@ if(savedData) {
             inputElement.value = value;
         }
     });
-}
+};
