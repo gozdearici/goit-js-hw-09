@@ -4,60 +4,60 @@ const localStorageKey = 'feedback-form-state';
 let feedbackFormValues = {};
 
 const debounce = (callback, delay = 300) => {
-    let timeout;
-    
-    return function (...args) {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => {
-            callback.apply(this, args);
-        }, delay);
-    };
+  let timeout;
+
+  return function (...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      callback.apply(this, args);
+    }, delay);
+  };
 };
 
-const saveToLocalStorage = debounce((event) => {
-    const { name, value } = event.target;
+const saveToLocalStorage = debounce(event => {
+  const { name, value } = event.target;
 
-    if(name === 'email' || name === 'message') {
-        feedbackFormValues[name] = value.trim();
-        localStorage.setItem(localStorageKey, JSON.stringify(feedbackFormValues));
-    }
+  if (name === 'email' || name === 'message') {
+    feedbackFormValues[name] = value.trim();
+    localStorage.setItem(localStorageKey, JSON.stringify(feedbackFormValues));
+  }
 }, 500);
 
-const clearToLocalStorage = (event) => {
-    event.preventDefault();
+const clearToLocalStorage = event => {
+  event.preventDefault();
 
-    const form = event.target;
+  const form = event.target;
 
-    const email = form.elements.email.value.trim();
-    const message = form.elements.message.value.trim();
+  const email = form.elements.email.value.trim();
+  const message = form.elements.message.value.trim();
 
-    if(!email || !message) {
-        alert('Lütfen tüm alanları doldurunuz!')
-        return;
-    }
+  if (!email || !message) {
+    alert('Lütfen tüm alanları doldurunuz!');
+    return;
+  }
 
-    const savedData = localStorage.getItem(localStorageKey);
-    console.log(JSON.parse(savedData));
+  const savedData = localStorage.getItem(localStorageKey);
+  console.log(JSON.parse(savedData));
 
-    localStorage.removeItem('feedback-form-state');
-    form.reset();
+  localStorage.removeItem('feedback-form-state');
+  form.reset();
 };
 
 if (feedbackForm) {
-    feedbackForm.addEventListener('input', saveToLocalStorage);
-    feedbackForm.addEventListener('submit', clearToLocalStorage);
+  feedbackForm.addEventListener('input', saveToLocalStorage);
+  feedbackForm.addEventListener('submit', clearToLocalStorage);
 }
 
 let savedData = localStorage.getItem(localStorageKey);
 
-if(savedData) {
-    feedbackFormValues = JSON.parse(savedData);
-    
-    Object.entries(feedbackFormValues).forEach(([name, value]) => {
-        const inputElement = feedbackForm.elements[name];
+if (savedData) {
+  feedbackFormValues = JSON.parse(savedData);
 
-        if (inputElement) {
-            inputElement.value = value;
-        }
-    });
-};
+  Object.entries(feedbackFormValues).forEach(([name, value]) => {
+    const inputElement = feedbackForm.elements[name];
+
+    if (inputElement) {
+      inputElement.value = value;
+    }
+  });
+}
